@@ -1,0 +1,132 @@
+
+\documentclass[11pt,leqno]{article}
+
+\usepackage[a4paper,left=25mm,right=25mm,top=30mm,bottom=30mm,marginpar=25mm]{geometry}
+\usepackage[german]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx} % Required for inserting images
+\newtheorem{theorem}{Theorem}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+
+\pagestyle{empty}
+
+\begin{document}
+\noindent \small Proseminar Analysis
+
+\vspace{-1cm}
+\begin{flushright}SoSe 2023
+
+Universit\"at Regensburg
+\end{flushright}
+\normalsize
+\vspace{0.2cm}
+\begin{center}
+{\bf \Large Das Lemma von Urysohn und der Fortsetzungssatz von Tietze}\\[0.3cm]
+{\it Raphael Heinrich}\\[0.2cm]
+{09.10.2012}\\[0.4cm]
+\end{center}
+
+\section{Grundlagen}
+\subsection{Einführung}
+Wir alle kennen aus der Analysis I die metrischen Räume, eine Menge $X$, gepaart mit einer Abstandsfunktion $d$, wobei $d$ gewisse 
+Eigenschaften erfüllen muss: Definitheit, Symmetrie, Dreiecksungleichung. Auf solchen Räumen besitzen Funktionen eine Vielzahl an 
+wünschenswerten Eigenschaften. Unter anderem werden wir sehen, dass, falls $A \subseteq X$ abgeschlossen und $f$ eine stetige Abbildung 
+ist, sich dann $f$ stetig auf $\hat{f}:X \xrightarrow{} X, f(x)=\hat{f}(x)$ für alle $x \in A$ fortsetzen lässt. In dieser Proseminararbeit 
+wollen wir jedoch den Fokus vor allem darauf legen, was passiert, wenn wir Räume betrachten, die nicht metrisch sind, wie zB. den Raum 
+$(\R,a), a:\R \times \R \xrightarrow{} \R, (x,y) \mapsto x-y.$ \\
+Dies wird uns zu der Frage bringen, ob die Aussage oben auch für nicht-metrische Räume gilt, bzw. welche Eigenschaften eines Raums 
+erhalten bleiben, und welche nicht zwingend nötig sind. Doch bevor wir dorthin gelangen, müssen wir zunächst ein paar Grundlagen klären.
+
+\subsection{Bemerkung}
+Die natürlichen Zahlen $\N$ definieren wir als $\N := \{0,1,2, ... \}$, das bedeutet, die 0 ist für uns in den natürlichen Zahlen enthalten. 
+Falls wir $\N \setminus \{0\}$ benötigen, schreiben wir $\N^\times$. Die Menge der positiven Zahlen einer Menge $M$ notieren wir mit $M^{+}$.
+Wir werden, soweit möglich, auf Quantoren $(\forall, \exists)$ verzichten. 
+Das Ende eines Beweises notieren wir mit $\blacksquare$.
+
+\subsection{Definition}
+Sei $(X,d)$ ein metrischer Raum.
+\begin{enumerate}
+    \item Sei außerdem $x \in X, \R \ni \varepsilon > 0$. Dann nennen wir $B(x,\varepsilon):=\{y \in X \mid d(x,y) \} < \varepsilon$ die offene 
+    Kugel um $x$ mit Radius $\varepsilon$. 
+    \item Eine Teilmenge $M \subseteq X$ heißt offen, per definitionem genau dann, wenn für alle \\ $x \in M$ ein Radius $r$ existiert, 
+    sodass $B(x,r) \subseteq M$. Abgeschlossen sei eine Menge, wenn sie Komplement einer offenen Menge ist.
+    \item Wir bezeichnen die Menge $U \subseteq X$ als eine \textbf{Umgebung} von $y \in X$, wenn ein $\varepsilon > 0$ existiert, 
+    sodass $B(y,\varepsilon) \subseteq U$.
+    \item Es wird sich später als nützlich herausstellen, den Abstand zwischen Mengen sinnvoll zu messen. 
+    Seien also $A,B$ nichtleere Teilmengen von $X, y \in X$. 
+    Dann \[d(A,B):= \text{inf}\{d(\lambda, \mu) \mid \lambda \in A, \mu \in B \}\text{, und analog: }d(y,A):= 
+    \text{inf}\{d(x, \lambda \mid \lambda \in A) \}.\]
+\end{enumerate}
+
+\subsection{Lemma}
+Sei $(X,d)$ ein metrischer Raum, $x,y \in X, x \neq y$. Dann gilt folgende Trennungseigenschaft: \\
+Es gibt ein $R > 0: B(x,R) \cap B(y,R) = \emptyset$. \\
+Beweis: Wählen wir $R= \frac{1}{2} \cdot d(x,y)$. Angenommen es gäbe ein $\alpha \in B(x,R) \cap B(y,R)$. Dann gelte: 
+\[2 \cdot R = d(x,y) \leq d(x,\alpha) + d(\alpha,y) < 2 \cdot R, \]
+da $\alpha$ im Schnitt der beiden offenen Kugeln läge. Das ist ein Widerspruch zur Allgemeinheit. \\
+Wir können diese Trennungseigenschaft sogar problemlos auf den Abstand zwischen Mengen aus vorheriger Definition übertragen: 
+Seien $A,C \subseteq X$ nichtleer. Dann existieren Obermengen $U_A \supsetneq A$ und $U_C \supsetneq C$ mit $U_A \cap U_C = \emptyset$. \\
+Wählen wir für $\varepsilon > 0$ unsere Obermengen als: $\bigcup_{x \in A}B(x,\varepsilon) $, bzw. $\bigcup_{z \in C}B(z,\varepsilon) $.\\ 
+Da für alle $x\in A, z \in C: x \neq z \Rightarrow U_A, U_C$ existieren $\Rightarrow d(A,C) > 0$. $\blacksquare$
+
+\subsection{Satz}
+Sei $(X,d)$ ein metrischer Raum.
+Seien dazu $M, N$ nichtleere, abgeschlossene Teilmengen von $X$, $M \cap N = \emptyset $. Dann gibt es eine stetige Funktion
+\[f: X \rightarrow{} [0,1] \text{, sodass: } f(M)=\{0\}, f(N)=\{1\}.\]
+\textit{Beweis}:
+Da $M,N$ disjunkt sind, existiert ein $\delta > 0$ mit $d(M,N) \geq \delta.$ \\
+Dies dürfen wir folgern, da in metrischen Räumen die Trennungseigenschaft von obigem Lemma gilt.
+Wegen $\delta > 0 \Rightarrow$ Es existiert mindestens ein $\xi \in X \setminus (M \cup N).$ Sei im Folgenden aber $\xi \in X$.
+Unterscheiden wir nun in drei Fälle: \\
+(i) Beide Mengen sind offen. \\
+Konstruieren wir nun $f$ mit den gewünschten Eigenschaften aus einer Hilfsabbildung $\hat{f}$:\\
+Es ergibt durchaus Sinn, für unsere Abbildung einen Bruch aus Metriken zu definieren, da wir so leicht Zahlen aus dem Intervall $[0,1]$ erhalten,
+sobald der Zähler kleiner als der Nenner ist. Damit für $\hat{f}(N)$ nun $f(M)=\{0\}, f(N)=\{1\}$ gilt, erkennt man durch genaues betrachten, dass
+\[\hat{f}: X \xrightarrow{} \mathbb{R}^{+}, \xi \mapsto \frac{d(\xi,M)}{d(\xi,M)-d(\xi,N)} \]
+eine vorerst sinnvolle Definition für $\hat{f}$ ist.
+Denn es gilt für alle $x \in M$:
+\[ f(x)= \frac{d(x,M)}{d(x,M)-d(x,N)}=\frac{0}{0-d(x,N)}=0 \Rightarrow f(M)=\{0\}.\]
+Und für alle $y \in N$: 
+\[ f(y)= \frac{d(y,M)}{d(y,M)-d(y,N)}= \frac{d(y,M)}{d(y,M)-0}= 1 \Rightarrow f(N)=\{1\}.\]
+Mit dieser Definition könnte es jedoch vorkommen, dass auch Werte $\eta = \hat{f}(\xi)$ außerhalb von $[0,1]$ angenommen werden.
+Wir müssen also sicherstellen, dass $d(\xi, M) < (d(\xi, M)-d(\xi, N))$. Dies erreichen wir, in dem wir 
+\\
+
+
+\begin{flushright} $\blacksquare$ \end{flushright}
+
+\subsection{Beispiel}
+Das wohl einfachste Beispiel stellt Folgendes dar: Sei $(\mathbb{R}, d_2)$ ein euklidischer metrischer Raum, 
+$M=\{0 \}, N=\{1\}, M \cap N = \emptyset. $
+Dann existiert die stetige Abbildung $f: \mathbb{R} \xrightarrow{} [0,1],$ \\
+$ x \mapsto \text{id}_{\mathbb{R}}(x)=x\text{, sodass } f(M)=\{0\}, f(N)= \{1\}.$
+
+\subsection{Definition} 
+Bevor wir das Lemma von Urysohn jedoch formulieren können, müssen wir noch einige weitere Grundlagen legen. Dafür definieren wir, 
+was es für einen topologischen Raum bedeutet, normal zu sein: Ein Raum $X$ heißt \textbf{normal} per definitionem genau dann, wenn für
+\[A,C\subseteq X,A\cap C=\emptyset\text{ gilt, dass: }U_A\supseteq A,U_C \supseteq C\text{ existieren mit: }U_A\cap U_C=\emptyset. \cite{Bartsch}\]
+Wir sehen leicht, dass wir für normale Räume letztenendes lediglich die Trennungseigenschaft von Lemma 1.4 fordern.
+
+\subsection{Beispiel}
+
+
+\section{Das Lemma von Urysohn}
+
+\begin{thebibliography}{99}
+
+    \bibitem{Bartsch}
+    {\sc Bartsch, René:}
+    \newblock {\em Allgemeine Topologie I}.
+    \newblock Oldenbourg Wissenschaftsverlag, München, 2007.
+    
+    
+    \bibitem{Querenburg}
+    {\sc von Querenburg, Boto:}
+    \newblock {\em Mengentheoretische Topologie}, 3., neu bearbeitete und erweiterte Auflage.
+    \newblock Springer-Lehrbuch. Springer, Berlin, 2001.
+\end{thebibliography}
+
+
+\end{document}
