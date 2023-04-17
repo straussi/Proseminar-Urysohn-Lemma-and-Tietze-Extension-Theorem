@@ -20,7 +20,7 @@ jobs:
       - name: Commit
         uses: EndBug/add-and-commit@v9 # You can change this to use a specific version.
         with:
-          add: 'Untitled-1.tex'
+          add: './Untitled-1.pdf --force'
           author_name: Michael Reimchen
           author_email: hi@mic-r.eu
           commit: --signoff
