@@ -1,0 +1,30 @@
+name: Compile Latex and Release PDF  
+
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+    
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v2
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: Untitled-1.tex
+      - name: Commit
+        uses: EndBug/add-and-commit@v9 # You can change this to use a specific version.
+        with:
+          add: './Untitled-1.pdf --force'
+          commit: --signoff
+          committer_name: Michael Reimchen
+          committer_email: hi@mic-r.eu
+          message: 'Update from source'
+          pull: '--rebase --autostash'
+          push: true
+      
