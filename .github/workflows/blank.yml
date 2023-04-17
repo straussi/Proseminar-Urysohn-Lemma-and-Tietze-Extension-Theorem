@@ -18,24 +18,17 @@ jobs:
         with:
           root_file: Untitled-1.tex
 
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          draft: false
-          prerelease: false
-
-      - name: Upload Release Asset
-        id: upload-release-asset 
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} 
-          asset_path: ./Untitled-1.pdf
-          asset_name: Untitled-1.pdf
-          asset_content_type: pdf
+    update:
+      steps: 
+        - name: Commit
+          uses: EndBug/add-and-commit@v9 # You can change this to use a specific version.
+          with:
+            add: 'Untitled-1.tex'
+            author_name: Michael Reimchen
+            author_email: hi@mic-r.eu
+            commit: --signoff
+            committer_name: Michael Reimchen
+            committer_email: hi@mic-r.eu
+            default_author: github_actor
+            message: 'Update from source'
+            pull: '--rebase --autostash'
