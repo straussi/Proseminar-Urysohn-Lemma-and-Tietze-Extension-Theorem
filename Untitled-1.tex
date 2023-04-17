@@ -9,7 +9,6 @@
 \newtheorem{theorem}{Theorem}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\N}{\mathbb{N}}
-
 \pagestyle{empty}
 
 \begin{document}
@@ -34,40 +33,41 @@ Wir alle kennen aus der Analysis I die metrischen Räume, eine Menge $X$, gepaar
 Eigenschaften erfüllen muss: Definitheit, Symmetrie, Dreiecksungleichung. Auf solchen Räumen besitzen Funktionen eine Vielzahl an 
 wünschenswerten Eigenschaften. Unter anderem werden wir sehen, dass, falls $A \subseteq X$ abgeschlossen und $f$ eine stetige Abbildung 
 ist, sich dann $f$ stetig auf $\hat{f}:X \xrightarrow{} X, f(x)=\hat{f}(x)$ für alle $x \in A$ fortsetzen lässt. In dieser Proseminararbeit 
-wollen wir jedoch den Fokus vor allem darauf legen, was passiert, wenn wir Räume betrachten, die nicht metrisch sind, wie zB. den Raum 
-$(\R,a), a:\R \times \R \xrightarrow{} \R, (x,y) \mapsto x-y.$ \\
+wollen wir jedoch den Fokus vor allem darauf legen, was passiert, wenn wir Räume betrachten, die nicht metrisch sind, oder vielleicht sogar nicht
+einmal metrisierbar. Das sind dann Räume, bei denen wir wissen, dass wir nie eine Metrik finden werden. Ein Beispiel dazu werden wir später sehen.\\
 Dies wird uns zu der Frage bringen, ob die Aussage oben auch für nicht-metrische Räume gilt, bzw. welche Eigenschaften eines Raums 
 erhalten bleiben, und welche nicht zwingend nötig sind. Doch bevor wir dorthin gelangen, müssen wir zunächst ein paar Grundlagen klären.
 
 \subsection{Bemerkung}
 Die natürlichen Zahlen $\N$ definieren wir als $\N := \{0,1,2, ... \}$, das bedeutet, die 0 ist für uns in den natürlichen Zahlen enthalten. 
 Falls wir $\N \setminus \{0\}$ benötigen, schreiben wir $\N^\times$. Die Menge der positiven Zahlen einer Menge $M$ notieren wir mit $M^{+}$.
-Wir werden, soweit möglich, auf Quantoren $(\forall, \exists)$ verzichten. 
+Wir werden, soweit möglich, auf Quantoren $(\forall, \exists)$ verzichten. Das Symbol "$\subseteq$" bezeichnet für uns die Teilmenge, 
+"$\subset$" die echte Teilmenge. Das gleiche gilt für Obermengen.
 Das Ende eines Beweises notieren wir mit $\blacksquare$.
 
 \subsection{Definition}
 Sei $(X,d)$ ein metrischer Raum.
 \begin{enumerate}
-    \item Sei außerdem $x \in X, \R \ni \varepsilon > 0$. Dann nennen wir $B(x,\varepsilon):=\{y \in X \mid d(x,y) \} < \varepsilon$ die offene 
-    Kugel um $x$ mit Radius $\varepsilon$. 
+    \item Sei außerdem $x \in X, \varepsilon \in \mathbb{R}^+$. Dann nennen wir $B(x,\varepsilon):=\{y \in X \mid d(x,y) \} < \varepsilon$ die offene 
+    Kugel um $x$ mit Radius $\varepsilon$, ganz analaog zur Definition in der Analysis I. 
     \item Eine Teilmenge $M \subseteq X$ heißt offen, per definitionem genau dann, wenn für alle \\ $x \in M$ ein Radius $r$ existiert, 
     sodass $B(x,r) \subseteq M$. Abgeschlossen sei eine Menge, wenn sie Komplement einer offenen Menge ist.
     \item Wir bezeichnen die Menge $U \subseteq X$ als eine \textbf{Umgebung} von $y \in X$, wenn ein $\varepsilon > 0$ existiert, 
     sodass $B(y,\varepsilon) \subseteq U$.
-    \item Es wird sich später als nützlich herausstellen, den Abstand zwischen Mengen sinnvoll zu messen. 
+    \item Es wird sich später als nützlich herausstellen, nicht nur den Abstand zwischen Punkten, sondern auch zwischen Mengen sinnvoll zu messen. 
     Seien also $A,B$ nichtleere Teilmengen von $X, y \in X$. 
     Dann \[d(A,B):= \text{inf}\{d(\lambda, \mu) \mid \lambda \in A, \mu \in B \}\text{, und analog: }d(y,A):= 
-    \text{inf}\{d(x, \lambda \mid \lambda \in A) \}.\]
+    \text{inf}\{d(x, \lambda) \mid \lambda \in A \}.\]
 \end{enumerate}
 
 \subsection{Lemma}
 Sei $(X,d)$ ein metrischer Raum, $x,y \in X, x \neq y$. Dann gilt folgende Trennungseigenschaft: \\
 Es gibt ein $R > 0: B(x,R) \cap B(y,R) = \emptyset$. \\
-Beweis: Wählen wir $R= \frac{1}{2} \cdot d(x,y)$. Angenommen es gäbe ein $\alpha \in B(x,R) \cap B(y,R)$. Dann gelte: 
+\textit{Beweis:} Wählen wir $R= \frac{1}{2} \cdot d(x,y)$. Angenommen es gäbe ein $\alpha \in B(x,R) \cap B(y,R)$. Dann gelte: 
 \[2 \cdot R = d(x,y) \leq d(x,\alpha) + d(\alpha,y) < 2 \cdot R, \]
-da $\alpha$ im Schnitt der beiden offenen Kugeln läge. Das ist ein Widerspruch zur Allgemeinheit. \\
+da $\alpha$ im Schnitt der beiden offenen Kugeln läge. Das ist ein Widerspruch zur Allgemeinheit. $\blacksquare$\\
 Wir können diese Trennungseigenschaft sogar problemlos auf den Abstand zwischen Mengen aus vorheriger Definition übertragen: 
-Seien $A,C \subseteq X$ nichtleer. Dann existieren Obermengen $U_A \supsetneq A$ und $U_C \supsetneq C$ mit $U_A \cap U_C = \emptyset$. \\
+Seien $A,C \subset X$ disjunkt, nichtleer. Dann existieren echte Obermengen $U_A \supset A$ und $U_C \supset C$ mit $U_A \cap U_C = \emptyset$. \\
 Wählen wir für $\varepsilon > 0$ unsere Obermengen als: $\bigcup_{x \in A}B(x,\varepsilon) $, bzw. $\bigcup_{z \in C}B(z,\varepsilon) $.\\ 
 Da für alle $x\in A, z \in C: x \neq z \Rightarrow U_A, U_C$ existieren $\Rightarrow d(A,C) > 0$. $\blacksquare$
 
@@ -75,24 +75,28 @@ Da für alle $x\in A, z \in C: x \neq z \Rightarrow U_A, U_C$ existieren $\Right
 Sei $(X,d)$ ein metrischer Raum.
 Seien dazu $M, N$ nichtleere, abgeschlossene Teilmengen von $X$, $M \cap N = \emptyset $. Dann gibt es eine stetige Funktion
 \[f: X \rightarrow{} [0,1] \text{, sodass: } f(M)=\{0\}, f(N)=\{1\}.\]
-\textit{Beweis}:
-Da $M,N$ disjunkt sind, existiert ein $\delta > 0$ mit $d(M,N) \geq \delta.$ \\
-Dies dürfen wir folgern, da in metrischen Räumen die Trennungseigenschaft von obigem Lemma gilt.
-Wegen $\delta > 0 \Rightarrow$ Es existiert mindestens ein $\xi \in X \setminus (M \cup N).$ Sei im Folgenden aber $\xi \in X$.
-Unterscheiden wir nun in drei Fälle: \\
-(i) Beide Mengen sind offen. \\
-Konstruieren wir nun $f$ mit den gewünschten Eigenschaften aus einer Hilfsabbildung $\hat{f}$:\\
+\textit{Beweis:}
+Sei im Folgenden $\xi \in X$. Konstruieren wir nun $f$ mit den gewünschten Eigenschaften.\\
 Es ergibt durchaus Sinn, für unsere Abbildung einen Bruch aus Metriken zu definieren, da wir so leicht Zahlen aus dem Intervall $[0,1]$ erhalten,
-sobald der Zähler kleiner als der Nenner ist. Damit für $\hat{f}(N)$ nun $f(M)=\{0\}, f(N)=\{1\}$ gilt, erkennt man durch genaues betrachten, dass
-\[\hat{f}: X \xrightarrow{} \mathbb{R}^{+}, \xi \mapsto \frac{d(\xi,M)}{d(\xi,M)-d(\xi,N)} \]
-eine vorerst sinnvolle Definition für $\hat{f}$ ist.
+sobald der Zähler kleiner als der Nenner ist. Damit für $f$ nun $f(M)=\{0\}, f(N)=\{1\}$ gilt, erkennt man durch genaues betrachten, dass
+\[f: X \xrightarrow{} [0,1], \xi \mapsto \frac{d(\xi,M)}{d(\xi,M)+d(\xi,N)} \]
+eine sinnvolle Definition für $f$ ist.
 Denn es gilt für alle $x \in M$:
-\[ f(x)= \frac{d(x,M)}{d(x,M)-d(x,N)}=\frac{0}{0-d(x,N)}=0 \Rightarrow f(M)=\{0\}.\]
+\[ f(x)= \frac{d(x,M)}{d(x,M)+d(x,N)}=\frac{0}{0+d(x,N)}=0 \Rightarrow f(M)=\{0\}.\]
 Und für alle $y \in N$: 
-\[ f(y)= \frac{d(y,M)}{d(y,M)-d(y,N)}= \frac{d(y,M)}{d(y,M)-0}= 1 \Rightarrow f(N)=\{1\}.\]
-Mit dieser Definition könnte es jedoch vorkommen, dass auch Werte $\eta = \hat{f}(\xi)$ außerhalb von $[0,1]$ angenommen werden.
-Wir müssen also sicherstellen, dass $d(\xi, M) < (d(\xi, M)-d(\xi, N))$. Dies erreichen wir, in dem wir 
-\\
+\[ f(y)= \frac{d(y,M)}{d(y,M)+d(y,N)}=\frac{d(y,M)}{d(y,M)+0}= 1 \Rightarrow f(N)=\{1\}.\]
+Diese Funktion ist zudem auch wohldefiniert. Da $M,N$ disjunkt sind, gilt: 
+\[d(M,N) > 0 \Rightarrow d(\xi,M) + d(\xi,N) > d(\xi,M).\]
+Dies dürfen wir folgern, da in metrischen Räumen die Trennungseigenschaft von obigem Lemma gilt.
+Somit ist $f(X) \subseteq [0,1]$.
+Auch wird garantiert, dass jedes $\xi \in X$ genau ein zugehöriges Bild $f(\xi) \in f(X)=[0,1]$ besitzt, dadurch, dass $X$ ein 
+metrischer Raum ist, die Metrik also schon wohldefniert ist, und damit auch Summen und Brüche von Metriken.\\
+Verbleibt, die Stetigkeit von $f$ zu zeigen. Hierzu benutzen wir die topologische Definition der Stetigkeit, die wir bereits aus der Analysis I
+kennen. Sie besagt:
+\[f \text{ stetig auf X} \Leftrightarrow \text{Für alle W } \subseteq [0,1] \text{ offen, ist } f^{-1}(W) \text{ offen.}\]
+Diese ist eine kluge Definition von Stetigkeit, da diese ohne Metriken auskommt. Damit können wir den Stetigkeitsbegriff später auch außerhalb vom 
+Kontext metrischer Räume komfortabel nutzen. Wir definieren Stetigkeit im Vornherein auf diese Weise, und beweisen nicht die Äquivalenz zur 
+$\varepsilon$-$\delta$-Definition.\\
 
 
 \begin{flushright} $\blacksquare$ \end{flushright}
@@ -103,16 +107,89 @@ $M=\{0 \}, N=\{1\}, M \cap N = \emptyset. $
 Dann existiert die stetige Abbildung $f: \mathbb{R} \xrightarrow{} [0,1],$ \\
 $ x \mapsto \text{id}_{\mathbb{R}}(x)=x\text{, sodass } f(M)=\{0\}, f(N)= \{1\}.$
 
-\subsection{Definition} 
-Bevor wir das Lemma von Urysohn jedoch formulieren können, müssen wir noch einige weitere Grundlagen legen. Dafür definieren wir, 
-was es für einen topologischen Raum bedeutet, normal zu sein: Ein Raum $X$ heißt \textbf{normal} per definitionem genau dann, wenn für
-\[A,C\subseteq X,A\cap C=\emptyset\text{ gilt, dass: }U_A\supseteq A,U_C \supseteq C\text{ existieren mit: }U_A\cap U_C=\emptyset. \cite{Bartsch}\]
-Wir sehen leicht, dass wir für normale Räume letztenendes lediglich die Trennungseigenschaft von Lemma 1.4 fordern.
-
 \subsection{Beispiel}
 
+\subsection{Bemerkung}
+Sei $A$ eine Menge. Dann bezeichnen wir mit $\overline{A}$ den topologischen Abschluss von $A$, also 
+\[\overline{A}:= \bigcap_{\mathcal{C}, A \subseteq \mathcal{C}\subseteq X, \mathcal{C} \text{ abgeschlossen}}  \]
+im Gegensatz zur Definition mithilfe der Häufungspunkte aus der Analysis I. Die bekannte Definition können wir leider nicht mehr verwenden,
+da es in der Topologie unter anderem auch Räume gibt, in denen unsere Definition von Häufungspunkten keinen Sinn mehr ergibt.
 
 \section{Das Lemma von Urysohn}
+
+\subsection{Definition}
+Eine essentielle Definition in der Topologie stellt die der Topologie dar. Als \textbf{Topologie} $\tau$ auf einer Menge $X$ bezeichnen 
+wir ein Mengensystem, also eine Menge von Mengen, die folgende Eigenschaften erfüllt:
+\begin{enumerate}
+    \item Sei $\mathcal{I}$ eine beliebige Indexmenge. 
+    Falls $\mathcal{T}_i \in \tau$ für alle $i \in \mathcal{I}$, dann ist auch $\bigcup_{i \in \mathcal{I}} \in \tau$.
+    \item Sei $\mathcal{J}$ eine endliche Indexmenge.
+    Falls $\mathcal{T}_j \in \tau$ für alle $j \in \mathcal{J}$, dann ist auch $\bigcap_{j \in \mathcal{J}} \in \tau$.
+    \item $X, \emptyset \in \tau$.
+\end{enumerate}
+Das Paar $(X,\tau)$ aus einer Menge $X$ und einer Topologie $\tau$ nennen wir einen topologischen Raum. Eine beliebige Menge $\mathcal{O} \in \tau$ 
+nennen wir offene Menge des topologischen Raums.
+
+\subsection{Definition} 
+Bevor wir das Lemma von Urysohn jedoch formulieren können, müssen wir noch einige weitere Grundlagen legen. Dafür definieren wir, 
+was es für einen topologischen Raum bedeutet, normal zu sein: Eine Raum $(X,\tau)$ heißt \textbf{normaler Raum} per definitionem genau dann, wenn für
+\[A,C\subseteq X,A\cap C=\emptyset\text{ gilt, dass: }U_A\supseteq A,U_C \supseteq C\text{ existieren mit: }U_A\cap U_C=\emptyset. \cite{Bartsch}\]
+Wir sehen leicht, dass wir für normale Räume letztenendes lediglich die Trennungseigenschaft von Lemma 1.4 fordern, ohne jedoch Metriken zu benutzen.
+Daraus folgt direkt, dass alle metrischen Räume normal sind.
+
+\subsection{Bemerkung}
+Bereits in der Analysis I sieht man Beispiele, in denen Folgen $a: \mathbb{N} \rightarrow \mathbb{R}$ andere Wertebereiche als $\mathbb{R}$
+besitzen. Für den Beweis des Lemmas von Urysohn werden wir eine Menge $D\subset \mathbb{Q}$ definieren, die Wertebereich unserer Folge sein soll.\\ 
+Zudem liegt es nahe, dass Folgen nicht unbedingt den Definitionsbereich der natürlichen Zahlen besitzen müssen. 
+Auch andere (nicht unbedingt abzählbare) Mengen wären denkbar. Im Folgenden werden wir eine Folge 
+\[\varphi: \mathbb{N} \times \mathbb{N} \rightarrow D\]
+für eine bestimmte Teilmenge $D \subset \mathbb{Q}$ definieren. Die Handhabung hier unterscheidet sich nicht grundlegend von der Handhabung 
+\glqq gewöhnlicher\grqq{} Folgen (wie zB. $(a_n)_{n \in \mathbb{N}}$ von oben), jedoch bietet die \glqq besondere\grqq{} Definition von 
+$\varphi$ gewisse Vorteile für den Beweis des folgenden Lemmas.
+
+\subsection{Lemma (Urysohn)}
+
+Ein topologischer Raum $X$ ist \textbf{normal}, genau dann, wenn es eine Funktion $f:X \rightarrow [0,1]$ gibt, sodass für $M,N \subset X$
+nichtleer, disjunkt, gilt: $f(M)=\{0\}, f(N)=\{1\}$. \\
+Anmerkung: Man sieht leicht, dass die geforderte Bedingung der Rückrichtung genau die gleiche Bedingung ist, die wir in Satz 1.5 schon für 
+metrische Räume bewiesen haben. Das Lemma von Urysohn impliziert also, dass jeder metrische Raum normal ist.\\
+\textit{Beweis:} Sei
+\[D:= \{\frac{p}{2^k} \mid p,k \in \mathbb{N}, 0 \leq p \leq 2^k \}. \]
+Definieren wir auf dieser Menge die Folge $\varphi: \mathbb{N} \times \mathbb{N} \rightarrow D$ folgendermaßen:
+\[\varphi = (\frac{0}{1}, \frac{1}{1}, \frac{1}{2}, \frac{1}{4}, \frac{3}{4}, \frac{1}{8}, \frac{3}{8}, \frac{5}{8}, \frac{7}{8}, \dots, 
+\frac{1}{2^n}, \frac{3}{2^n}, \dots, \frac{2^n-1}{2^n}, \dots).\]
+Wählen wir nun offene Mengen $G_0, G_1$ so, dass: 
+\[M \subset G_0 \subset \overline{G_0} \subset G_1 \subset \overline{G_1} \subset (X \setminus N). \]
+Mithilfe vollständiger Induktion ordnen wir jeder weiteren Zahl $d \in D$ den Folgegliedern nach eine offene Menge $G_d$ zu, sodass für 
+$d < \tilde{d}: \overline{G_d} \subset G_{\tilde{d}}.$ \\
+So erreichen wir prinzipiell, die Größe von Zahlen $d \in D$ auf \glqq die Größe von Mengen $G_d$\grqq{} zu übertragen.\\
+Sei $b = \frac{2p+1}{2^n}$ Folgenglied von $\varphi$, so ist jedem $d \in D$ vor $b$ bereits einer offenen Menge zugeordnet, sodass 
+$\overline{G_d} \subset G_{\tilde{d}}$, falls $d, \tilde{d}$ vor $b$ in der Folge stehen und $d < \tilde{d}$. \\
+Nach voriger Definition von $\varphi$ ist 
+\[\varphi = ( ..., \frac{p}{2^{n-1}}=:a, b, c:=\frac{p+1}{2^{n-1}}). \]
+Sei $G_b \subset X$ nun offen, sodass:
+\[\overline{G_a} \subset G_b \subset \overline{G_b} \subset G_c.\]
+Für $\mu \in [0,1]\subset \R$ definieren wir \[G_\mu := \bigcup_{d \in D, d \leq \mu}G_d .\] 
+Dies stellt sich insofern als sinnvoll heraus, als dass $G_\mu$ sowohl stets offen ist, als Vereinigung offener Mengen, als auch $\overline{G_\mu}
+\subset G_{\tilde{\mu}}$ für $\mu <\tilde{\mu}$.\\
+Bei genauerer Betrachtung liegt nahe, $f:X \rightarrow [0,1]$ folgendermaßen zu definieren:
+\[f:X \rightarrow [0,1], x \mapsto \begin{cases}
+    \inf \{\mu \in [0,1] \mid x \in G_\mu\},  & \text{falls }x \in G_1\\
+    1 & \text{sonst.} \\
+\end{cases} \]
+Damit gilt schon $0 \leq f(x) \leq 1$ für alle $x \in X$ wegen der Definition der Zuordnungsvorschrift von $f$, was aufgrund der Eindeutigkeit des
+Infimums schon Wohldefiniertheit garantiert.
+\begin{align*}
+    \text{Außerdem gilt: } & f(M) = \{0\}, \\
+    \text{sowie: } &         f(N) = \{1\}, \text{da } 1 \notin G_1 
+\end{align*}
+Bei einer solchen Definition unserer Funktion ist natürlich zweifelhaft, ob diese wirklich stetig ist. Dies wird sich jedoch als wahr herausstellen,
+indem wir wieder wie oben die topologische Definition der Stetigkeit ausnutzen, also:
+\[f \text{ stetig auf } X \Leftrightarrow \text{Für alle } W \subset [0,1] \text { offen, ist } f^{-1}(W) \text{ offen.}\]
+Sei zunächst für alle $\mu < 0: G_\mu := \emptyset$, sowie für alle $\mu > 1: G_\mu := X.$
+Da $\emptyset$ und $X$ offene Mengen sind, bleibt nur noch Stetigkeit für $\mu \in [0,1]$ zu zeigen.
+
+
 
 \begin{thebibliography}{99}
 
