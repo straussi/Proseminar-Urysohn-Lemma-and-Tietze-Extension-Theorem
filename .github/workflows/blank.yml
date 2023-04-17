@@ -29,4 +29,5 @@ jobs:
           default_author: github_actor
           message: 'Update from source'
           pull: '--rebase --autostash'
+          push: true
       
