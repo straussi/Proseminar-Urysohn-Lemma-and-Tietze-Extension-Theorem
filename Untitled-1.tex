@@ -43,7 +43,7 @@ Die natürlichen Zahlen $\N$ definieren wir als $\N := \{0,1,2, ... \}$, das bed
 Falls wir $\N \setminus \{0\}$ benötigen, schreiben wir $\N^\times$. Die Menge der positiven Zahlen einer Menge $M$ notieren wir mit $M^{+}$.
 Wir werden, soweit möglich, auf Quantoren $(\forall, \exists)$ verzichten. Das Symbol "$\subseteq$" bezeichnet für uns die Teilmenge, 
 "$\subset$" die echte Teilmenge. Das gleiche gilt für Obermengen.
-Das Ende eines Beweises notieren wir mit $\blacksquare$.
+Das Ende eines Beweises notieren wir mit $\square$.
 
 \subsection{Definition}
 Sei $(X,d)$ ein metrischer Raum.
@@ -65,11 +65,11 @@ Sei $(X,d)$ ein metrischer Raum, $x,y \in X, x \neq y$. Dann gilt folgende Trenn
 Es gibt ein $R > 0: B(x,R) \cap B(y,R) = \emptyset$. \\
 \textit{Beweis:} Wählen wir $R= \frac{1}{2} \cdot d(x,y)$. Angenommen es gäbe ein $\alpha \in B(x,R) \cap B(y,R)$. Dann gelte: 
 \[2 \cdot R = d(x,y) \leq d(x,\alpha) + d(\alpha,y) < 2 \cdot R, \]
-da $\alpha$ im Schnitt der beiden offenen Kugeln läge. Das ist ein Widerspruch zur Allgemeinheit. $\blacksquare$\\
+da $\alpha$ im Schnitt der beiden offenen Kugeln läge. Das ist ein Widerspruch zur Allgemeinheit. $\square$\\
 Wir können diese Trennungseigenschaft sogar problemlos auf den Abstand zwischen Mengen aus vorheriger Definition übertragen: 
 Seien $A,C \subset X$ disjunkt, nichtleer. Dann existieren echte Obermengen $U_A \supset A$ und $U_C \supset C$ mit $U_A \cap U_C = \emptyset$. \\
 Wählen wir für $\varepsilon > 0$ unsere Obermengen als: $\bigcup_{x \in A}B(x,\varepsilon) $, bzw. $\bigcup_{z \in C}B(z,\varepsilon) $.\\ 
-Da für alle $x\in A, z \in C: x \neq z \Rightarrow U_A, U_C$ existieren $\Rightarrow d(A,C) > 0$. $\blacksquare$
+Da für alle $x\in A, z \in C: x \neq z \Rightarrow U_A, U_C$ existieren $\Rightarrow d(A,C) > 0$. $\square$
 
 \subsection{Satz}
 Sei $(X,d)$ ein metrischer Raum.
@@ -93,20 +93,30 @@ Auch wird garantiert, dass jedes $\xi \in X$ genau ein zugehöriges Bild $f(\xi)
 metrischer Raum ist, die Metrik also schon wohldefniert ist, und damit auch Summen und Brüche von Metriken.\\
 Verbleibt, die Stetigkeit von $f$ zu zeigen. Hierzu benutzen wir die topologische Definition der Stetigkeit, die wir bereits aus der Analysis I
 kennen. Sie besagt:
-\[f \text{ stetig auf X} \Leftrightarrow \text{Für alle W } \subseteq [0,1] \text{ offen, ist } f^{-1}(W) \text{ offen.}\]
+\[f \text{ stetig auf X} \Leftrightarrow \text{Für alle } W \subseteq [0,1] \text{ offen, ist } f^{-1}(W) \text{ offen.}\]
 Diese ist eine kluge Definition von Stetigkeit, da diese ohne Metriken auskommt. Damit können wir den Stetigkeitsbegriff später auch außerhalb vom 
 Kontext metrischer Räume komfortabel nutzen. Wir definieren Stetigkeit im Vornherein auf diese Weise, und beweisen nicht die Äquivalenz zur 
-$\varepsilon$-$\delta$-Definition.\\
-
-
-\begin{flushright} $\blacksquare$ \end{flushright}
+$\varepsilon$-$\delta$-Definition.
+Das bequemste Instrument für Offenheit im Kontext metrischer Räume sind die offenen Kugeln. Daher liegt es nahe,
+dass wir uns im Stetigkeitsbeweis dieser bedienen werden. \\
+Sei $W \subset [0,1]=f(X)$ offen. Sei nun außerdem $c \in f^{-1}(W) \Rightarrow f(c) \in W$. 
+Dann existiert ein $\varepsilon > 0$ so, dass $B_2(f(c),\varepsilon) \subseteq W$, wegen Offenheit von $W$. \\
+Daraus folgt, dass für $c \in f^{-1}(W)$ ein $r > 0$ existiert, sodass:
+\[B_X(c,r) \cap M = \emptyset \text{ und } B_X(c,r) \cap N = \emptyset\]
+Denn wäre $c \in M$ oder $c \in N$, so ist ihr Bild nach Definition von $f$ abgeschlossen, wodurch sie für den Stetigkeitsbeweis irrelevant 
+werden. \\
+Jetzt existiert aber zu jedem $\eta \in B_2(f(c), \varepsilon)$ ein $\xi \in B_X(c,r)$. Sobald wir $r$ passend wählen, folgt:
+\[B_X(c,r) \subseteq f^{-1}(W) \Rightarrow f \text{ stetig.}\]
+\begin{flushright} 
+    $\square$ 
+\end{flushright}
 
 \subsection{Beispiel}
 Das wohl einfachste Beispiel stellt Folgendes dar: Sei $(\mathbb{R}, d_2)$ ein euklidischer metrischer Raum, 
 $M=\{0 \}, N=\{1\}, M \cap N = \emptyset. $
 Dann existiert die stetige Abbildung $f: \mathbb{R} \xrightarrow{} [0,1],$ \\
-$ x \mapsto \text{id}_{\mathbb{R}}(x)=x\text{, sodass } f(M)=\{0\}, f(N)= \{1\}.$
-
+$ x \mapsto \text{id}_{\mathbb{R}}(x)=x\text{, sodass } f(M)=\{0\}, f(N)= \{1\}.$ \\
+Findet ihr noch weitere Beispiele, wo sich zeigt, dass diese Regel erfüllt ist?
 \subsection{Beispiel}
 
 \subsection{Bemerkung}
@@ -121,10 +131,10 @@ da es in der Topologie unter anderem auch Räume gibt, in denen unsere Definitio
 Eine essentielle Definition in der Topologie stellt die der Topologie dar. Als \textbf{Topologie} $\tau$ auf einer Menge $X$ bezeichnen 
 wir ein Mengensystem, also eine Menge von Mengen, die folgende Eigenschaften erfüllt:
 \begin{enumerate}
-    \item Sei $\mathcal{I}$ eine beliebige Indexmenge. 
-    Falls $\mathcal{T}_i \in \tau$ für alle $i \in \mathcal{I}$, dann ist auch $\bigcup_{i \in \mathcal{I}} \in \tau$.
-    \item Sei $\mathcal{J}$ eine endliche Indexmenge.
-    Falls $\mathcal{T}_j \in \tau$ für alle $j \in \mathcal{J}$, dann ist auch $\bigcap_{j \in \mathcal{J}} \in \tau$.
+    \item Sei $I$ eine beliebige Indexmenge. 
+    Falls $O_i \in \tau$ für alle $i \in I$, dann ist auch $\bigcup_{i \in I} \in \tau$.
+    \item Sei $J$ eine endliche Indexmenge.
+    Falls $O_j \in \tau$ für alle $j \in J$, dann ist auch $\bigcap_{j \in J} \in \tau$.
     \item $X, \emptyset \in \tau$.
 \end{enumerate}
 Das Paar $(X,\tau)$ aus einer Menge $X$ und einer Topologie $\tau$ nennen wir einen topologischen Raum. Eine beliebige Menge $\mathcal{O} \in \tau$ 
@@ -149,10 +159,10 @@ $\varphi$ gewisse Vorteile für den Beweis des folgenden Lemmas.
 
 \subsection{Lemma (Urysohn)}
 
-Ein topologischer Raum $X$ ist \textbf{normal}, genau dann, wenn es eine Funktion $f:X \rightarrow [0,1]$ gibt, sodass für $M,N \subset X$
+Ein topologischer Raum $(X, \tau)$ ist \textbf{normal}, genau dann, wenn es eine Funktion $f:X \rightarrow [0,1]$ gibt, sodass für $M,N \subset X$
 nichtleer, disjunkt, gilt: $f(M)=\{0\}, f(N)=\{1\}$. \\
-Anmerkung: Man sieht leicht, dass die geforderte Bedingung der Rückrichtung genau die gleiche Bedingung ist, die wir in Satz 1.5 schon für 
-metrische Räume bewiesen haben. Das Lemma von Urysohn impliziert also, dass jeder metrische Raum normal ist.\\
+Anmerkung: Man sieht leicht, dass die geforderte Bedingung der Hinrichtung genau die gleiche Bedingung ist, die wir in Satz 1.5 schon für 
+metrische Räume bewiesen haben. Der Beweis des Lemmas von Urysohn impliziert also, dass jeder metrische Raum normal ist.\\
 \textit{Beweis:} Sei
 \[D:= \{\frac{p}{2^k} \mid p,k \in \mathbb{N}, 0 \leq p \leq 2^k \}. \]
 Definieren wir auf dieser Menge die Folge $\varphi: \mathbb{N} \times \mathbb{N} \rightarrow D$ folgendermaßen:
@@ -166,7 +176,7 @@ So erreichen wir prinzipiell, die Größe von Zahlen $d \in D$ auf \glqq die Gr�
 Sei $b = \frac{2p+1}{2^n}$ Folgenglied von $\varphi$, so ist jedem $d \in D$ vor $b$ bereits einer offenen Menge zugeordnet, sodass 
 $\overline{G_d} \subset G_{\tilde{d}}$, falls $d, \tilde{d}$ vor $b$ in der Folge stehen und $d < \tilde{d}$. \\
 Nach voriger Definition von $\varphi$ ist 
-\[\varphi = ( ..., \frac{p}{2^{n-1}}=:a, b, c:=\frac{p+1}{2^{n-1}}). \]
+\[\varphi = ( ..., \frac{p}{2^{n-1}}=:a, b, c:=\frac{p+1}{2^{n-1}},...). \]
 Sei $G_b \subset X$ nun offen, sodass:
 \[\overline{G_a} \subset G_b \subset \overline{G_b} \subset G_c.\]
 Für $\mu \in [0,1]\subset \R$ definieren wir \[G_\mu := \bigcup_{d \in D, d \leq \mu}G_d .\] 
@@ -187,7 +197,12 @@ Bei einer solchen Definition unserer Funktion ist natürlich zweifelhaft, ob die
 indem wir wieder wie oben die topologische Definition der Stetigkeit ausnutzen, also:
 \[f \text{ stetig auf } X \Leftrightarrow \text{Für alle } W \subset [0,1] \text { offen, ist } f^{-1}(W) \text{ offen.}\]
 Sei zunächst für alle $\mu < 0: G_\mu := \emptyset$, sowie für alle $\mu > 1: G_\mu := X.$
-Da $\emptyset$ und $X$ offene Mengen sind, bleibt nur noch Stetigkeit von $f$ für $\mu \in [0,1]$ zu zeigen.
+Da $\emptyset$ und $X$ offene Mengen sind, bleibt nur noch Stetigkeit von $f$ für $\mu \in [0,1]$ zu zeigen. \\
+Sei dazu wieder $W \subset [0,1]$ offen, und sei $c \in f^{-1}(c) \Rightarrow f(c) \in W.$ 
+
+\begin{flushright}
+    $\square$
+\end{flushright}
 
 
 
