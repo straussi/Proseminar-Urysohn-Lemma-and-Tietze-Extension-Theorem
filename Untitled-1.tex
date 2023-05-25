@@ -204,6 +204,29 @@ Sei dazu wieder $W \subset [0,1]$ offen, und sei $c \in f^{-1}(c) \Rightarrow f(
     $\square$
 \end{flushright}
 
+\section{Der Fortsetzungssatz von Tietze}
+Um den eigentlichen Beweis etwas übersichtlicher zu halten, beweisen wir zwei Lemmas.
+
+\subsection{Lemma}
+Sei $(X, \tau)$ normaler Raum, $A \subset X$ abgeschlossen, $f: A \rightarrow [-1,1]\subset \mathbb{R}$ stetig.
+Dann gibt es zu $f$ eine Funktionenfolge $(g_n)_{n \in \mathbb{N}}$ mit $g_n: X \rightarrow \mathbb{R}$ stetig für alle $n$, sodass
+\begin{enumerate}
+    \item Für alle $x \in X: (\frac{2}{3})^n -1 \leq g_n(x) \leq 1-(\frac{2}{3})^n$,
+    \item Für alle $x \in A: |f(x)-g_n(x)| \leq (\frac{2}{3})^n$,
+    \item Für alle $x \in X: |g_{n+1}(x) - g_n(x)| \leq \frac{1}{3} \cdot (\frac{2}{3})^n$ und
+    \item Für alle $x \in X \text{ und } m,n \geq p: |g_n(x) - g_m(x)| \leq (\frac{2}{3})^p$ für $m,p \in \mathbb{N}$ gelten.
+\end{enumerate}
+\textit{Beweis:} Wir definieren die Folge per vollständige Induktion über den Index $n \in \mathbb{N}$. \\
+Anfang: $n=0$: Setzen wir $g_0(x):=0$ für $x \in X$, dann sind wegen $-1 \leq 0 \leq 1$ und $|f(x)| \leq 1$ die Bedingungen 1. und 2.
+erfüllt. Da 3. und 4. Aussagen über $n > 0$ treffen, fahren wir fort. \\
+Schluss: Wir nehmen an, für $m \leq n$ erfüllen alle $g_m$ die Bedingungen 1.–3. Dann seien:
+\[B_{n+1} := \biggl\{x \in A \Big\vert f(x)-g_n(x) \geq \frac{1}{3} \cdot \biggl(\frac{2}{3}\biggr)^n\biggr\} \text{ und}\]
+\[C_{n+1} := \biggl\{x \in A \Big\vert f(x)-g_n(x) \leq -\frac{1}{3} \cdot \biggl(\frac{2}{3}\biggr)^n\biggr\}.\]
+Mit dem Lemma von Urysohn existiert für $n$
+\[\phi_n:X \rightarrow \biggl[-\frac{1}{3}\biggl(\frac{2}{3}\biggr)^n, \frac{1}{3}\biggl(\frac{2}{3}\biggr)^n\biggr] \text{ stetig, mit:}\]
+\[\phi_n(B_{n+1}) = \biggl\{-\frac{1}{3}\biggl(\frac{2}{3}\biggr)^n\biggr\} \text{ und } 
+\phi_n(C_{n+1}) = \biggl\{\frac{1}{3}\biggl(\frac{2}{3}\biggr)^n\biggr\}.\]
+Dann definieren wir $g_{n+1} := g_n - \phi_n$. Offensichtlich ist 3. erfüllt. 
 
 
 \begin{thebibliography}{99}
