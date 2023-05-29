@@ -9,6 +9,7 @@
 \newtheorem{theorem}{Theorem}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\N}{\mathbb{N}}
+\newcommand\myleq{\mathrel{\overset{\makebox[0pt]{\mbox{\normalfont\sffamily IV}}}{\leq}}}
 \pagestyle{empty}
 
 \begin{document}
@@ -222,11 +223,25 @@ erfüllt. Da 3. und 4. Aussagen über $n > 0$ treffen, fahren wir fort. \\
 Schluss: Wir nehmen an, für $m \leq n$ erfüllen alle $g_m$ die Bedingungen 1.–3. Dann seien:
 \[B_{n+1} := \biggl\{x \in A \Big\vert f(x)-g_n(x) \geq \frac{1}{3} \cdot \biggl(\frac{2}{3}\biggr)^n\biggr\} \text{ und}\]
 \[C_{n+1} := \biggl\{x \in A \Big\vert f(x)-g_n(x) \leq -\frac{1}{3} \cdot \biggl(\frac{2}{3}\biggr)^n\biggr\}.\]
-Mit dem Lemma von Urysohn existiert für $n$
+Mit dem Lemma von Urysohn existiert für $n$:
 \[\phi_n:X \rightarrow \biggl[-\frac{1}{3}\biggl(\frac{2}{3}\biggr)^n, \frac{1}{3}\biggl(\frac{2}{3}\biggr)^n\biggr] \text{ stetig, mit:}\]
 \[\phi_n(B_{n+1}) = \biggl\{-\frac{1}{3}\biggl(\frac{2}{3}\biggr)^n\biggr\} \text{ und } 
 \phi_n(C_{n+1}) = \biggl\{\frac{1}{3}\biggl(\frac{2}{3}\biggr)^n\biggr\}.\]
-Dann definieren wir $g_{n+1} := g_n - \phi_n$. Offensichtlich ist 3. erfüllt. 
+Dann definieren wir $g_{n+1} := g_n - \phi_n$. Offensichtlich ist 3. erfüllt. Mit:
+\[ g_n -\frac{1}{3}\biggl(\frac{2}{3}\biggr)^n \geq \biggl(\frac{2}{3}\biggr)^n -1 \text{, aber } g_n + \frac{1}{3}\biggl(\frac{2}{3}\biggr)^n \leq 
+1- \biggl(\frac{2}{3}\biggr)^n\]
+ist nun auch 1. erfüllt. Betrachtet man:
+\[\big\vert f(x)-g_{n+1}(x)\big\vert =\big\vert f(x)-\big(g_n(x)-\phi_n(x)\big)\big\vert\leq\big\vert f(x)-g_n(x)\big\vert\myleq\Big(\frac{2}{3}\Big)^n,\]
+so ist klar, dass 2. auch gilt. \\
+Die so konstruierte Folge können wir nun wiefolgt abschätzen:
+\begin{align}
+    &\big\vert g_{n+k}(x)-g_n(x)\big\vert = \big\vert g_{n+k-1}(x)-\phi_{n+k-1}(x)-g_n(x)\big\vert = \notag\\
+    &\big\vert g_{n}(x)-\phi_{n+k-1}(x)-\phi_{n+k-2}(x)- ... -\phi_n(x)-g_n(x) \big\vert \leq \big\vert g_n-\phi_n(x)\big\vert + \notag\\
+    &\big\vert g_n(x)-\phi_{n+1}(x)-\phi_{n}(x)\big\vert + ... + 
+    \big\vert g_n(x)-\phi_n(x)- ... -\phi_{n+k}(x)\big\vert = \notag\\
+    &\sum_{i=1}^{k} \big\vert g_{n+i}(x)-g_{n+i-1}(x)\big\vert \leq 
+    \notag 
+\end{align}
 
 
 \begin{thebibliography}{99}
