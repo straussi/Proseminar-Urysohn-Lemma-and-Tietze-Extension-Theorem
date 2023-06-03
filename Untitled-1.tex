@@ -10,6 +10,7 @@
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand\myleq{\mathrel{\overset{\makebox[0pt]{\mbox{\normalfont\sffamily IV}}}{\leq}}}
+\newcommand\myleqq{\mathrel{\overset{\makebox[0pt]{\mbox{\normalfont\tiny\sffamily (3.)}}}{\leq}}}
 \pagestyle{empty}
 
 \begin{document}
@@ -239,10 +240,52 @@ Die so konstruierte Folge können wir nun wiefolgt abschätzen:
     &\big\vert g_{n}(x)-\phi_{n+k-1}(x)-\phi_{n+k-2}(x)- ... -\phi_n(x)-g_n(x) \big\vert \leq \big\vert g_n-\phi_n(x)\big\vert + \notag\\
     &\big\vert g_n(x)-\phi_{n+1}(x)-\phi_{n}(x)\big\vert + ... + 
     \big\vert g_n(x)-\phi_n(x)- ... -\phi_{n+k}(x)\big\vert = \notag\\
-    &\sum_{i=1}^{k} \big\vert g_{n+i}(x)-g_{n+i-1}(x)\big\vert \leq 
+    &\sum_{i=1}^{k} \big\vert g_{n+i}(x)-g_{n+i-1}(x)\big\vert \myleqq \sum_{i=1}^{k}\frac{1}{3}\biggl(\frac{2}{3}\biggr)^{n+i-1}
+    = \frac{1}{3}\biggl(\frac{2}{3}\biggr)^n \cdot \sum_{i=1}^{k}\biggl(\frac{2}{3}\biggr)^{i-1} <\biggl(\frac{2}{3}\biggr)^n.
     \notag 
 \end{align}
+Es folgt für $m,n \leq p \in \N$: $\big\vert g_n(x)-g_m(x) \big\vert \leq \big(\frac{2}{3}\big)^p$ und damit die Behauptung.
+\begin{flushright}
+    $\square$
+\end{flushright}
 
+\subsection{Lemma}
+Sei $A \subset X$ Teilmenge eines normalen Raumes $(X,\tau)$. \\
+Eine stetige Funktion $\hat{f}: A \rightarrow (-1,1) \subset \R$ lässt sich stetig zu
+$F:X \rightarrow (-1,1)$ fortsetzen. \\
+\textit{Beweis:} Sei $(g_n)_{n\in\N}$ mit $g_n:X\rightarrow \R$ die Funktionenfolge aus vergangenem Lemma. Dann liefert ihre Eigenschaft 4. gerade
+gleichmäßige Konvergenz, mit Grenzfunktion $\lim_{n\rightarrow\infty}(g_n(x)) := F(x)$. Die Stetigkeit von $F$ folgt, da nach Analysis I
+gleichmäßige Konvergenz einer Folge stetiger Funktionen die Stetigkeit der Grenzfunktion garantiert. \\
+Sei $f:A \rightarrow [-1,1]$ wie eben. Für $x \in A$ gilt wegen 2. im vorigen Lemma, dass:
+\[ \big\vert f(x)-F(x)\big\vert = \big\vert f(x)-\lim_{n\rightarrow\infty}(g_n(x))\big\vert = \lim_{n\rightarrow\infty}\big\vert f(x)-g_n(x)\big\vert=0,\]
+also $f=F\mid A$. Mit 1. aus dem vorangegangenen Lemma folgt für alle $x \in X: (-1)\leq F(x) \leq 1$. Damit ist gezeigt, dass sich eine stetige Funktion
+$f:A \rightarrow [-1,1]$ auf eine stetige Funktion $F:X \rightarrow [-1,1]$ fortsetzen lässt. \\
+Sei nun $\hat{f}:A \rightarrow (-1,1)$ stetig, $F:X \rightarrow [-1,1]$ stetige Fortsetzung von $\hat{f}$ auf ganz $X$ und 
+$B:=\{x \in X \mid \vert F(x) \vert = 1\}$. Dann ist $B$ abgeschlossen und disjunkt zu $A$. \\
+Dann existiert eine stetige Funktion $g:X \rightarrow [0,1]$ mit $g(A)=\{1\}$ und $g(B)\subseteq\{0\}$.
+Folglich ist $\hat{F}:=F\cdot g$ stetig mit $F\big\vert_A = \hat{f}$ und $\vert \hat{F}(x)\vert < 1$ für alle $x \in X$.
+Und damit folgt die Behauptung.
+\begin{flushright}
+    $\square$
+\end{flushright}
+
+\subsection{Satz (Tietze)}
+
+Sei $(X,\tau)$ ein topologischer Raum. Dann ist $X$ genau dann normal, wenn sich jede auf einer abgeschlossenen Menge $A\subseteq X$ definierte
+stetige Funktion auf ganz $X$ stetig fortsetzen lässt. \\
+\textit{Beweis:} Lässt sich jede auf einer abgeschlossenen Menge $A$ definierte Funktion $f$ auf ganz $X$ fortsetzen, dann gibt es zu disjunkten,
+abgeschlossenen Mengen $M, N \subset X$ eine stetige Funktion $g:X \rightarrow \R$ mit 
+\[f(M)= \{0\}, f(N)= \{1\} \]
+Dann folgt, dass $f^{-1}(]-\infty, \frac{1}{2}[)$ und $f^{-1}(]\frac{1}{2}, \infty[)$ die Mengen $M,N$ disjunkt umgeben.
+$\Rightarrow X$ ist normal.\\
+Angenommen $X$ ist normal. Sei $A \subset X$ abgeschlossen und $f:A \rightarrow \R$ stetig.
+Sei zudem $h:\R \rightarrow ]-1,1[$ ein Homöomorphismus, wir wählen $h(x):=\frac{1}{1+\mid x \mid}$. \\
+Mit Lemma 3.2 existiert eine stetige Fortsetzung $\hat{F}:X\rightarrow]-1,1[$ von $\hat{f}:=h \circ f$.\\
+Dann ist $F:=h^{-1} \circ \hat{F}$ stetig und $F\big\vert M = h^{-1}\circ \hat{f}=f$.\\
+Dann ist $F$ stetige Fortsetzung von $f$, womit die Existenz gezeigt ist. 
+\begin{flushright}
+    $\square$
+\end{flushright}
 
 \begin{thebibliography}{99}
 
