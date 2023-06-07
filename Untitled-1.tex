@@ -62,7 +62,7 @@ Sei $(X,d)$ ein metrischer Raum.
     \text{inf}\{d(x, \lambda) \mid \lambda \in A \}.\]
 \end{enumerate}
 
-\subsection{Lemma}
+\subsection{Proposition}
 Sei $(X,d)$ ein metrischer Raum, $x,y \in X, x \neq y$. Dann gilt folgende Trennungseigenschaft: \\
 Es gibt ein $R > 0: B(x,R) \cap B(y,R) = \emptyset$. \\
 \textit{Beweis:} Wählen wir $R= \frac{1}{2} \cdot d(x,y)$. Angenommen es gäbe ein $\alpha \in B(x,R) \cap B(y,R)$. Dann gelte: 
@@ -165,7 +165,7 @@ Ein topologischer Raum $(X, \tau)$ ist \textbf{normal}, genau dann, wenn es eine
 nichtleer, disjunkt, gilt: $f(M)=\{0\}, f(N)=\{1\}$. \\
 Anmerkung: Man sieht leicht, dass die geforderte Bedingung der Hinrichtung genau die gleiche Bedingung ist, die wir in Satz 1.5 schon für 
 metrische Räume bewiesen haben. Der Beweis des Lemmas von Urysohn impliziert also, dass jeder metrische Raum normal ist.\\
-\textit{Beweis:} Sei
+\textit{Beweis:} Zeigen wir zunächst die Hinrichtung. Sei
 \[D:= \{\frac{p}{2^k} \mid p,k \in \mathbb{N}, 0 \leq p \leq 2^k \}. \]
 Definieren wir auf dieser Menge die Folge $\varphi: \mathbb{N} \times \mathbb{N} \rightarrow D$ folgendermaßen:
 \[\varphi = (\frac{0}{1}, \frac{1}{1}, \frac{1}{2}, \frac{1}{4}, \frac{3}{4}, \frac{1}{8}, \frac{3}{8}, \frac{5}{8}, \frac{7}{8}, \dots, 
@@ -200,7 +200,11 @@ indem wir wieder wie oben die topologische Definition der Stetigkeit ausnutzen, 
 \[f \text{ stetig auf } X \Leftrightarrow \text{Für alle } W \subset [0,1] \text { offen, ist } f^{-1}(W) \text{ offen.}\]
 Sei zunächst für alle $\mu < 0: G_\mu := \emptyset$, sowie für alle $\mu > 1: G_\mu := X.$
 Da $\emptyset$ und $X$ offene Mengen sind, bleibt nur noch Stetigkeit von $f$ für $\mu \in [0,1]$ zu zeigen. \\
-Sei dazu wieder $W \subset [0,1]$ offen, und sei $c \in f^{-1}(c) \Rightarrow f(c) \in W.$ 
+Sei $\xi \in X$ und $0<\delta<\varepsilon$. Dann gilt: 
+\[\xi \in W:=G_{f(\xi)+\epsilon-\delta}\setminus \overline{G}_{f(\xi)-\varepsilon} \subset f^{-1}(]f(\xi)-\varepsilon, f(\xi)+\varepsilon[),\]
+und $W$ ist offen, und $]f(\xi)-\varepsilon, f(\xi)+\varepsilon[$ ist per definition offen, also ist $f$ stetig in $\xi$. \\
+Für die Rückrichtung nehmen wir an, dass es zu $M,N \subset X$ abgeschlossen, disjunkt und nichtleer eine stetige Funktion 
+$f:X \rightarrow \R$ gibt, für die $f(M)=\{0\}, f(N)=\{1\}$ gilt. Dann ist – wegen Stetigkeit von $f$ – $(X,\tau)$ schon normal.
 
 \begin{flushright}
     $\square$
@@ -278,7 +282,7 @@ abgeschlossenen Mengen $M, N \subset X$ eine stetige Funktion $g:X \rightarrow \
 \[f(M)= \{0\}, f(N)= \{1\} \]
 Dann folgt, dass $f^{-1}(]-\infty, \frac{1}{2}[)$ und $f^{-1}(]\frac{1}{2}, \infty[)$ die Mengen $M,N$ disjunkt umgeben.
 $\Rightarrow X$ ist normal.\\
-Angenommen $X$ ist normal. Sei $A \subset X$ abgeschlossen und $f:A \rightarrow \R$ stetig.
+Angenommen $X$ ist normal. Sei $A \subset X$ abgeschlossen und $f:A \rightarrow \R$ stetig. \\
 Sei zudem $h:\R \rightarrow ]-1,1[$ ein Homöomorphismus, wir wählen $h(x):=\frac{1}{1+\mid x \mid}$. \\
 Mit Lemma 3.2 existiert eine stetige Fortsetzung $\hat{F}:X\rightarrow]-1,1[$ von $\hat{f}:=h \circ f$.\\
 Dann ist $F:=h^{-1} \circ \hat{F}$ stetig und $F\big\vert M = h^{-1}\circ \hat{f}=f$.\\
